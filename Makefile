@@ -80,3 +80,16 @@ unlink-cli: ## Remove o link local da CLI
 	@echo "$(YELLOW)🔗 Removendo link local...$(RESET)"
 	npm unlink -g @sergiolneves/lib-shared
 	@echo "$(GREEN)✅ Link removido!$(RESET)"
+
+# Deploy do Storybook
+deploy-storybook: build-storybook ## Compila e faz deploy do Storybook no GitHub Pages
+	@echo "$(YELLOW)🚀 Fazendo deploy do Storybook...$(RESET)"
+	@if [ ! -d "storybook-static" ]; then \
+		echo "$(YELLOW)❌ Erro: Diretório storybook-static não encontrado!$(RESET)"; \
+		exit 1; \
+	fi
+	@echo "$(BLUE)💡 Criando branch gh-pages...$(RESET)"
+	git add storybook-static -f
+	git commit -m "Deploy Storybook to GitHub Pages" || true
+	git subtree push --prefix storybook-static origin gh-pages
+	@echo "$(GREEN)✅ Storybook publicado! Acesse: https://sergiolneves.github.io/Lib-Share/$(RESET)"
