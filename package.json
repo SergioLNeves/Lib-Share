@@ -1,7 +1,7 @@
 {
   "name": "@sergiolneves/lib-shared",
   "private": false,
-  "version": "0.1.0",
+  "version": "1.0.2",
   "description": "Biblioteca de componentes React compartilhados com Tailwind CSS",
   "type": "module",
   "keywords": [
@@ -18,7 +18,7 @@
     "url": "https://github.com/SergioLNeves/Lib-Shared.git"
   },
   "bin": {
-    "lib-shared": "./cli.js"
+    "lib-shared": "cli.js"
   },
   "main": "./dist/lib-shared.umd.js",
   "module": "./dist/lib-shared.es.js",
