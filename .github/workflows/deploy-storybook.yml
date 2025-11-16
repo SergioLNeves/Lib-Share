@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -51,10 +51,11 @@ jobs:
       - name: Build Storybook
         run: pnpm run build-storybook
 
+      - name: Copy registry to Storybook output
+        run: cp -r public/r storybook-static/
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        with:
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
