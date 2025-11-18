@@ -10,7 +10,7 @@ const REGISTRY_URL = "https://sergiolneves.github.io/Lib-Shared/r";
 const REQUIRED_DEPS = ["class-variance-authority", "clsx", "tailwind-merge"];
 
 // Allowed component names (whitelist to prevent path traversal)
-const ALLOWED_COMPONENTS = ["button"];
+const ALLOWED_COMPONENTS = ["button", "use-responsive", "container", "stack"];
 
 // Validate component name to prevent path traversal attacks
 function isValidComponentName(name) {
