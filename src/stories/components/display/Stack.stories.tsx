@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Stack } from "@/registry/components/display/stack.tsx";
+import { Stack } from "@/registry/lib-ui/display/stack.tsx";
 
 const meta = {
   title: "Components/Display/Stack",

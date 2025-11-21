@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Container } from "@/registry/components/display/container.tsx";
+import { Container } from "@/registry/lib-ui/display/container.tsx";
 
 const meta = {
   title: "Components/Display/Container",
