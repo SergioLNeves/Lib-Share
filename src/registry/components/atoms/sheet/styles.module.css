@@ -1,0 +1,306 @@
+/* CSS Variables */
+.overlay {
+	--sheet-overlay-bg: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+	--sheet-bg: var(--color-white);
+	--sheet-foreground: var(--color-black);
+	--sheet-border-color: var(--color-gray-200);
+	--sheet-muted-foreground: var(--color-gray-500);
+	--sheet-shadow:
+		0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	--sheet-close-hover-bg: var(--color-gray-100);
+	--sheet-focus-ring: var(--color-blue-300);
+}
+
+:global(.dark) .content {
+	--sheet-bg: var(--color-black);
+	--sheet-foreground: var(--color-white);
+	--sheet-border-color: var(--color-gray-800);
+	--sheet-muted-foreground: var(--color-gray-400);
+	--sheet-shadow:
+		0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+	--sheet-close-hover-bg: var(--color-gray-400);
+	--sheet-focus-ring: var(--color-blue-200);
+}
+
+/* Overlay */
+.overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 50;
+	background-color: var(--sheet-overlay-bg);
+}
+
+.overlay[data-state="open"] {
+	animation: fadeIn 300ms ease;
+}
+
+.overlay[data-state="closed"] {
+	animation: fadeOut 300ms ease;
+}
+
+/* Content Base */
+.content {
+	position: fixed;
+	z-index: 50;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	background-color: var(--sheet-bg);
+	color: var(--sheet-foreground);
+	box-shadow: var(--sheet-shadow);
+
+	transition: transform 500ms ease-in-out;
+}
+
+/* Side Variants */
+.right {
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 75%;
+	max-width: 24rem;
+	border-left: 1px solid var(--sheet-border-color);
+}
+
+.right[data-state="open"] {
+	animation: slideInFromRight 500ms ease;
+}
+
+.right[data-state="closed"] {
+	animation: slideOutToRight 300ms ease;
+}
+
+.left {
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 75%;
+	max-width: 24rem;
+	border-right: 1px solid var(--sheet-border-color);
+}
+
+.left[data-state="open"] {
+	animation: slideInFromLeft 500ms ease;
+}
+
+.left[data-state="closed"] {
+	animation: slideOutToLeft 300ms ease;
+}
+
+.top {
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid var(--sheet-border-color);
+}
+
+.top[data-state="open"] {
+	animation: slideInFromTop 500ms ease;
+}
+
+.top[data-state="closed"] {
+	animation: slideOutToTop 300ms ease;
+}
+
+.bottom {
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: auto;
+	border-top: 1px solid var(--sheet-border-color);
+}
+
+.bottom[data-state="open"] {
+	animation: slideInFromBottom 500ms ease;
+}
+
+.bottom[data-state="closed"] {
+	animation: slideOutToBottom 300ms ease;
+}
+
+/* Close Button */
+.closeButton {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 2rem;
+	height: 2rem;
+	padding: 0;
+
+	background: transparent;
+	border: none;
+	border-radius: 0.25rem;
+
+	opacity: 0.7;
+	cursor: pointer;
+
+	transition:
+		opacity 200ms,
+		background-color 200ms;
+}
+
+.closeButton:hover {
+	opacity: 1;
+	background-color: var(--sheet-close-hover-bg);
+}
+
+.closeButton:focus-visible {
+	opacity: 1;
+	outline: 2px solid var(--sheet-focus-ring);
+	outline-offset: 2px;
+}
+
+.closeButton:disabled {
+	pointer-events: none;
+}
+
+.closeIcon {
+	width: 1rem;
+	height: 1rem;
+}
+
+.srOnly {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+/* Header */
+.header {
+	display: flex;
+	flex-direction: column;
+	gap: 0.375rem;
+	padding: 1rem;
+}
+
+/* Footer */
+.footer {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-top: auto;
+	padding: 1rem;
+}
+
+/* Title */
+.title {
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1;
+	color: var(--sheet-foreground);
+}
+
+/* Description */
+.description {
+	font-size: 0.875rem;
+	color: var(--sheet-muted-foreground);
+}
+
+/* Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes slideInFromRight {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideOutToRight {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes slideInFromLeft {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideOutToLeft {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+@keyframes slideInFromTop {
+	from {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideOutToTop {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-100%);
+	}
+}
+
+@keyframes slideInFromBottom {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideOutToBottom {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(100%);
+	}
+}
