@@ -28,11 +28,14 @@ interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 	({ className, variant, asChild = false, ...props }, ref) => {
+		const id = React.useId();
+
 		const Comp = asChild ? Slot : "button";
 
 		return (
 			<Comp
 				data-slot="button"
+				id={id}
 				className={cn(buttonVariants({ variant, className }))}
 				ref={ref}
 				{...props}
