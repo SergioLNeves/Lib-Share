@@ -1,0 +1,19 @@
+.separator {
+	--separator-background: var(--color-gray-200);
+	background-color: var(--separator-background);
+	flex-shrink: 0;
+}
+
+:global(.dark) .separator {
+	--separator-background: var(--color-gray-800);
+}
+
+.separator[data-orientation="horizontal"] {
+	height: 1px;
+	width: 100%;
+}
+
+.separator[data-orientation="vertical"] {
+	height: 100%;
+	width: 1px;
+}
