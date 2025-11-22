@@ -1,153 +1,121 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Button } from '@/registry/components/atoms/button/button'
-import './components.button.css'
+import { Layout } from '@/docs/layout/layout'
+import { Sidebar } from '@/docs/sidebar/sidebar'
+import { Content } from '@/docs/content/content'
+import { ExampleSection } from '@/docs/example-section/example-section'
+import { PropsTable } from '@/docs/props-table/props-table'
 
 export const Route = createFileRoute('/components/button')({
   component: ButtonDocs,
 })
 
 function ButtonDocs() {
+  const propsData = [
+    {
+      name: "variant",
+      type: '"primary" | "secondary" | "link"',
+      defaultValue: '"primary"',
+      description: "Variante visual do botão",
+    },
+    {
+      name: "asChild",
+      type: "boolean",
+      defaultValue: "false",
+      description: "Permite composição com outros elementos",
+    },
+    {
+      name: "className",
+      type: "string",
+      description: "Classes CSS adicionais",
+    },
+  ];
+
   return (
-    <div className="docs-container">
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <h1>Lib Shared</h1>
-          <p>Biblioteca de Componentes</p>
-        </div>
-        <nav className="sidebar-nav">
-          <a href="/" className="nav-item">
-            Início
-          </a>
-          <div className="nav-section">
-            <h3>Componentes</h3>
-            <a href="/components/button" className="nav-item active">
-              Button
-            </a>
-            <a href="/components/avatar" className="nav-item">
-              Avatar
-            </a>
-          </div>
-        </nav>
-      </aside>
-      <main className="content">
-        <div className="content-inner">
-          <h1>Button</h1>
-          <p>Componente de botão versátil com múltiplas variantes e suporte para composição.</p>
+    <Layout>
+      <Sidebar activeRoute="/components/button" />
+      <Content>
+        <h1>Button</h1>
+        <p>Componente de botão versátil com múltiplas variantes e suporte para composição.</p>
+        
+        <section>
+          <h2>Importação</h2>
+          <pre><code>{`import { Button } from '@/registry/components/atoms/button/button'`}</code></pre>
+        </section>
+
+        <section>
+          <h2>Variantes</h2>
           
-          <section>
-            <h2>Importação</h2>
-            <pre><code>{`import { Button } from '@/registry/components/atoms/button/button'`}</code></pre>
-          </section>
+          <ExampleSection
+            title="Primary"
+            code={`<Button variant="primary">Primary Button</Button>`}
+          >
+            <Button variant="primary">Primary Button</Button>
+          </ExampleSection>
 
-          <section>
-            <h2>Variantes</h2>
-            
-            <div className="example-section">
-              <h3>Primary</h3>
-              <div className="example-demo">
-                <Button variant="primary">Primary Button</Button>
-              </div>
-              <pre><code>{`<Button variant="primary">Primary Button</Button>`}</code></pre>
-            </div>
+          <ExampleSection
+            title="Secondary"
+            code={`<Button variant="secondary">Secondary Button</Button>`}
+          >
+            <Button variant="secondary">Secondary Button</Button>
+          </ExampleSection>
 
-            <div className="example-section">
-              <h3>Secondary</h3>
-              <div className="example-demo">
-                <Button variant="secondary">Secondary Button</Button>
-              </div>
-              <pre><code>{`<Button variant="secondary">Secondary Button</Button>`}</code></pre>
-            </div>
+          <ExampleSection
+            title="Link"
+            code={`<Button variant="link">Link Button</Button>`}
+          >
+            <Button variant="link">Link Button</Button>
+          </ExampleSection>
+        </section>
 
-            <div className="example-section">
-              <h3>Link</h3>
-              <div className="example-demo">
-                <Button variant="link">Link Button</Button>
-              </div>
-              <pre><code>{`<Button variant="link">Link Button</Button>`}</code></pre>
-            </div>
-          </section>
+        <section>
+          <h2>Props</h2>
+          <PropsTable data={propsData} />
+        </section>
 
-          <section>
-            <h2>Props</h2>
-            <table className="props-table">
-              <thead>
-                <tr>
-                  <th>Prop</th>
-                  <th>Tipo</th>
-                  <th>Padrão</th>
-                  <th>Descrição</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>variant</code></td>
-                  <td><code>"primary" | "secondary" | "link"</code></td>
-                  <td><code>"primary"</code></td>
-                  <td>Variante visual do botão</td>
-                </tr>
-                <tr>
-                  <td><code>asChild</code></td>
-                  <td><code>boolean</code></td>
-                  <td><code>false</code></td>
-                  <td>Permite composição com outros elementos</td>
-                </tr>
-                <tr>
-                  <td><code>className</code></td>
-                  <td><code>string</code></td>
-                  <td>-</td>
-                  <td>Classes CSS adicionais</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-
-          <section>
-            <h2>Exemplos de Uso</h2>
-            
-            <div className="example-section">
-              <h3>Com evento onClick</h3>
-              <div className="example-demo">
-                <Button 
-                  variant="primary" 
-                  onClick={() => alert('Clicou!')}
-                >
-                  Clique aqui
-                </Button>
-              </div>
-              <pre><code>{`<Button 
+        <section>
+          <h2>Exemplos de Uso</h2>
+          
+          <ExampleSection
+            title="Com evento onClick"
+            code={`<Button 
   variant="primary" 
   onClick={() => alert('Clicou!')}
 >
   Clique aqui
-</Button>`}</code></pre>
-            </div>
+</Button>`}
+          >
+            <Button 
+              variant="primary" 
+              onClick={() => alert('Clicou!')}
+            >
+              Clique aqui
+            </Button>
+          </ExampleSection>
 
-            <div className="example-section">
-              <h3>Botão desabilitado</h3>
-              <div className="example-demo">
-                <Button variant="primary" disabled>
-                  Desabilitado
-                </Button>
-              </div>
-              <pre><code>{`<Button variant="primary" disabled>
+          <ExampleSection
+            title="Botão desabilitado"
+            code={`<Button variant="primary" disabled>
   Desabilitado
-</Button>`}</code></pre>
-            </div>
+</Button>`}
+          >
+            <Button variant="primary" disabled>
+              Desabilitado
+            </Button>
+          </ExampleSection>
 
-            <div className="example-section">
-              <h3>Usando asChild</h3>
-              <div className="example-demo">
-                <Button variant="primary" asChild>
-                  <a href="https://github.com">Ir para GitHub</a>
-                </Button>
-              </div>
-              <pre><code>{`<Button variant="primary" asChild>
+          <ExampleSection
+            title="Usando asChild"
+            code={`<Button variant="primary" asChild>
   <a href="https://github.com">Ir para GitHub</a>
-</Button>`}</code></pre>
-            </div>
-          </section>
-        </div>
-      </main>
-    </div>
+</Button>`}
+          >
+            <Button variant="primary" asChild>
+              <a href="https://github.com">Ir para GitHub</a>
+            </Button>
+          </ExampleSection>
+        </section>
+      </Content>
+    </Layout>
   )
 }
