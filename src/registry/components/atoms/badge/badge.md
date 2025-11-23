@@ -1,6 +1,6 @@
 # Badge
 
-Componente de badge para exibir status, contadores ou categorias de forma compacta.
+Componente para exibir status, contadores ou categorias de forma compacta e visual.
 
 ## Importação
 
@@ -29,17 +29,6 @@ import { Badge } from "@/registry/components/atoms/badge";
 - **Success**: Indica sucesso ou estado positivo
 - **Warning**: Alerta ou atenção necessária
 - **Error**: Erro ou estado crítico
-
-## Exemplos de Uso
-
-```tsx live
-<>
-  <Badge>Novo</Badge>
-  <Badge variant="success">Ativo</Badge>
-  <Badge variant="warning">Pendente</Badge>
-  <Badge variant="error">Bloqueado</Badge>
-</>
-```
 
 ## Propriedades
 

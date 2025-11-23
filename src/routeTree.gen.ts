@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsComponentRouteImport } from './routes/docs.$component'
-import { Route as ComponentsButtonRouteImport } from './routes/components.button'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,39 +22,30 @@ const DocsComponentRoute = DocsComponentRouteImport.update({
   path: '/docs/$component',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ComponentsButtonRoute = ComponentsButtonRouteImport.update({
-  id: '/components/button',
-  path: '/components/button',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/components/button': typeof ComponentsButtonRoute
   '/docs/$component': typeof DocsComponentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/components/button': typeof ComponentsButtonRoute
   '/docs/$component': typeof DocsComponentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/components/button': typeof ComponentsButtonRoute
   '/docs/$component': typeof DocsComponentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/components/button' | '/docs/$component'
+  fullPaths: '/' | '/docs/$component'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/components/button' | '/docs/$component'
-  id: '__root__' | '/' | '/components/button' | '/docs/$component'
+  to: '/' | '/docs/$component'
+  id: '__root__' | '/' | '/docs/$component'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ComponentsButtonRoute: typeof ComponentsButtonRoute
   DocsComponentRoute: typeof DocsComponentRoute
 }
 
@@ -75,19 +65,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/components/button': {
-      id: '/components/button'
-      path: '/components/button'
-      fullPath: '/components/button'
-      preLoaderRoute: typeof ComponentsButtonRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ComponentsButtonRoute: ComponentsButtonRoute,
   DocsComponentRoute: DocsComponentRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,6 +1,6 @@
 # Card
 
-Contêiner versátil para agrupar conteúdo relacionado e ações com estrutura consistente.
+Contêiner para agrupar conteúdo relacionado e ações com estrutura consistente.
 
 ## Importação
 
@@ -19,7 +19,7 @@ import {
 ## Uso Básico
 
 ```tsx live
-<Card style={{ width: '350px' }}>
+<Card style={{ width: "350px" }}>
   <CardHeader>
     <CardTitle>Criar Projeto</CardTitle>
     <CardDescription>Inicie um novo projeto em um clique</CardDescription>
@@ -36,7 +36,7 @@ import {
 ## Com Ação no Cabeçalho
 
 ```tsx live
-<Card style={{ width: '350px' }}>
+<Card style={{ width: "350px" }}>
   <CardHeader>
     <CardTitle>Configurações</CardTitle>
     <CardDescription>Gerencie suas preferências</CardDescription>
@@ -58,7 +58,7 @@ O Card é composto por subcomponentes que trabalham juntos:
 - **CardHeader**: Área superior para título e descrição
 - **CardTitle**: Título principal do card
 - **CardDescription**: Texto de apoio ou subtítulo
-- **CardAction**: Ações no cabeçalho (botões, menus) - alinhado à direita
+- **CardAction**: Ações no cabeçalho, alinhado à direita
 - **CardContent**: Corpo principal com padding
 - **CardFooter**: Área inferior para ações finais
 

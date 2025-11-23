@@ -41,7 +41,7 @@ import {
     <NavigationMenuItem>
       <NavigationMenuTrigger>Produtos</NavigationMenuTrigger>
       <NavigationMenuContent>
-        <div style="padding: 1rem; display: grid; gap: 0.5rem; min-width: 200px;">
+        <div style={{ padding: "1rem", display: "grid", gap: "0.5rem", minWidth: "200px" }}>
           <NavigationMenuLink href="/produtos/novo">
             Lançamentos
           </NavigationMenuLink>

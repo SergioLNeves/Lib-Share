@@ -9,6 +9,18 @@ interface SidebarProps {
 function Sidebar({ activeRoute }: SidebarProps) {
 	const docs = getComponentDocs();
 
+	// Agrupar documentos por categoria
+	const docsByCategory = docs.reduce((acc, doc) => {
+		if (!acc[doc.category]) {
+			acc[doc.category] = [];
+		}
+		acc[doc.category].push(doc);
+		return acc;
+	}, {} as Record<string, typeof docs>);
+
+	// Ordenar categorias e componentes
+	const sortedCategories = Object.keys(docsByCategory).sort();
+
 	return (
 		<aside className={styles.sidebar}>
 			<div className={styles.header}>
@@ -22,18 +34,22 @@ function Sidebar({ activeRoute }: SidebarProps) {
 				>
 					Início
 				</Link>
-				<div className={styles.navSection}>
-					<h3>Componentes</h3>
-					{docs.map((doc) => (
-						<a
-							key={doc.name}
-							href={`/docs/${doc.name}`}
-							className={`${styles.navItem} ${activeRoute === `/docs/${doc.name}` ? styles.active : ""}`}
-						>
-							{doc.name.charAt(0).toUpperCase() + doc.name.slice(1)}
-						</a>
-					))}
-				</div>
+				{sortedCategories.map((category) => (
+					<div key={category} className={styles.navSection}>
+						<h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+						{docsByCategory[category]
+							.sort((a, b) => a.name.localeCompare(b.name))
+							.map((doc) => (
+								<a
+									key={doc.name}
+									href={`/docs/${doc.name}`}
+									className={`${styles.navItem} ${activeRoute === `/docs/${doc.name}` ? styles.active : ""}`}
+								>
+									{doc.name.charAt(0).toUpperCase() + doc.name.slice(1)}
+								</a>
+							))}
+					</div>
+				))}
 			</nav>
 		</aside>
 	);

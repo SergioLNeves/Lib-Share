@@ -1,6 +1,6 @@
 # Input
 
-O componente `Input` é um campo de entrada de texto básico, estilizado para consistência visual e acessibilidade.
+Campo de entrada de texto estilizado para consistência visual e acessibilidade.
 
 ## Importação
 
@@ -10,46 +10,43 @@ import { Input } from "@/registry/components/atoms/input";
 
 ## Uso Básico
 
-```tsx
-import { Input } from "@/registry/components/atoms/input";
-
-export function ExemploInput() {
-  return <Input type="email" placeholder="Email" />;
-}
+```tsx live
+<Input type="email" placeholder="Email" />
 ```
 
 ## Com Label
 
-Geralmente utilizado em conjunto com um `Label` (se disponível) ou texto descritivo.
-
-```tsx
-import { Input } from "@/registry/components/atoms/input";
-
-export function InputComLabel() {
-  return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <label htmlFor="email">Email</label>
-      <Input type="email" id="email" placeholder="Email" />
-    </div>
-  );
-}
+```tsx live
+<div style={{ display: "grid", gap: "0.5rem", maxWidth: "350px" }}>
+  <label htmlFor="email">Email</label>
+  <Input type="email" id="email" placeholder="exemplo@email.com" />
+</div>
 ```
 
 ## Desabilitado
 
-```tsx
-import { Input } from "@/registry/components/atoms/input";
-
-export function InputDesabilitado() {
-  return <Input disabled type="email" placeholder="Email" />;
-}
+```tsx live
+<Input disabled type="email" placeholder="Email" />
 ```
 
-## Propriedades (Props)
+## Tipos de Input
 
-O componente `Input` aceita todas as propriedades nativas do elemento HTML `<input>`, além de:
+```tsx live
+<div style={{ display: "grid", gap: "1rem", maxWidth: "350px" }}>
+  <Input type="text" placeholder="Texto" />
+  <Input type="email" placeholder="Email" />
+  <Input type="password" placeholder="Senha" />
+  <Input type="number" placeholder="Número" />
+</div>
+```
 
-| Propriedade | Tipo | Descrição |
-|---|---|---|
-| `className` | `string` | Adiciona classes CSS personalizadas. |
-| `type` | `string` | O tipo de input (text, password, email, etc.). Padrão: `text`. |
+## Propriedades
+
+| Propriedade | Tipo | Padrão | Descrição |
+|-------------|------|--------|-----------|
+| `type` | `string` | `'text'` | Tipo do input (text, email, password, etc.) |
+| `placeholder` | `string` | - | Texto de placeholder |
+| `disabled` | `boolean` | `false` | Desabilita o input |
+| `className` | `string` | - | Classes CSS adicionais |
+
+Todas as propriedades nativas do elemento `<input>` também são suportadas.

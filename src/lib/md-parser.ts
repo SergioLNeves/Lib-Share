@@ -3,6 +3,7 @@ export interface ComponentDoc {
 	path: string;
 	content: string;
 	sections: Section[];
+	category: string;
 }
 
 export interface Section {
@@ -91,7 +92,14 @@ export function parseMarkdown(content: string): Section[] {
 	return sections;
 }
 
+// Cache para armazenar todos os docs carregados
+let cachedDocs: ComponentDoc[] | null = null;
+
 export function getComponentDocs(): ComponentDoc[] {
+	if (cachedDocs) {
+		return cachedDocs;
+	}
+
 	const docs: ComponentDoc[] = [];
 
 	// Import all markdown files from registry recursively
@@ -101,9 +109,11 @@ export function getComponentDocs(): ComponentDoc[] {
 	);
 
 	for (const [path, content] of Object.entries(markdownModules)) {
-		// Extract component name from path (folder containing the .md file)
+		// Extract component name and category from path
+		// Path format: /src/registry/components/atoms/button/button.md
 		const pathParts = path.split("/");
 		const componentName = pathParts[pathParts.length - 2];
+		const category = pathParts[pathParts.length - 3]; // atoms, molecules, organisms
 		const sections = parseMarkdown(content);
 
 		docs.push({
@@ -111,8 +121,10 @@ export function getComponentDocs(): ComponentDoc[] {
 			path: `/docs/${componentName}`,
 			content,
 			sections,
+			category,
 		});
 	}
 
+	cachedDocs = docs;
 	return docs;
 }

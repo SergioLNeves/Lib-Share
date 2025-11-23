@@ -2,6 +2,24 @@ import React from "react";
 import { LiveProvider, LivePreview, LiveError } from "react-live";
 import { Button } from "@/registry/components/atoms/button";
 import { Badge } from "@/registry/components/atoms/badge";
+import { Input } from "@/registry/components/atoms/input";
+import { Separator } from "@/registry/components/atoms/separator";
+import { Spinner } from "@/registry/components/atoms/spinner";
+import {
+	Avatar,
+	AvatarImage,
+	AvatarFallback,
+} from "@/registry/components/atoms/avatar";
+import {
+	Sheet,
+	SheetTrigger,
+	SheetContent,
+	SheetHeader,
+	SheetTitle,
+	SheetDescription,
+	SheetFooter,
+	SheetClose,
+} from "@/registry/components/atoms/sheet";
 import {
 	Card,
 	CardAction,
@@ -19,6 +37,7 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 } from "@/registry/components/atoms/navigation-menu";
+import { PasswordInput } from "@/registry/components/molecules/password-input";
 import styles from "./live-code.module.css";
 
 interface LiveCodeProps {
@@ -32,6 +51,20 @@ const scope = {
 	React,
 	Button,
 	Badge,
+	Input,
+	Separator,
+	Spinner,
+	Avatar,
+	AvatarImage,
+	AvatarFallback,
+	Sheet,
+	SheetTrigger,
+	SheetContent,
+	SheetHeader,
+	SheetTitle,
+	SheetDescription,
+	SheetFooter,
+	SheetClose,
 	Card,
 	CardHeader,
 	CardTitle,
@@ -45,6 +78,7 @@ const scope = {
 	NavigationMenuTrigger,
 	NavigationMenuContent,
 	NavigationMenuLink,
+	PasswordInput,
 };
 
 function LiveCode({ code, meta }: LiveCodeProps) {
